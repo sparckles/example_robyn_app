@@ -1,0 +1,11 @@
+bcrypt==4.0.1
+dill==0.3.6
+multiprocess==0.70.14
+nestd==0.3.1
+passlib==1.7.4
+PySnooper==1.2.0
+robyn==0.36.2
+SQLAlchemy==2.0.19
+typing_extensions==4.7.1
+uvloop==0.17.0
+watchdog==2.2.1
