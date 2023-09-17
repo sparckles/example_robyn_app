@@ -1,13 +1,12 @@
-#pylint: disable-all
+# models.py
+from sqlalchemy import Column, DateTime, Float, Integer, String, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-from sqlalchemy import create_engine, Column, Integer, String, Float , Engine, Date
-from sqlalchemy.orm import sessionmaker, declarative_base
+DATABASE_URL = "sqlite:///./gotham_crime_data.db"
 
-
-DATABASE_URL = "sqlite:///./gotham_database.db"
-
-engine: Engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 Base = declarative_base()
 
@@ -16,15 +15,13 @@ class Crime(Base):
     __tablename__ = "crimes"
 
     id = Column(Integer, primary_key=True, index=True)
-    type = Column(String)
+    type = Column(String, index=True)
     description = Column(String)
     location = Column(String)
-    date = Column(Date)
+    suspect_name = Column(String)
+    date_time = Column(DateTime)
     latitude = Column(Float)
     longitude = Column(Float)
-
-    def __repr__(self):
-        return f"<Crime(id={self.id}, type={self.type}, description={self.description}, location={self.location}, date={self.date}, latitude={self.latitude}, longitude={self.longitude})>"
 
 
 class User(Base):
@@ -36,6 +33,7 @@ class User(Base):
 
     def __repr__(self):
         return f"<User(id={self.id}, username={self.username}, hashed_password={self.hashed_password})>"
+
 
 if __name__ == "__main__":
     Base.metadata.create_all(bind=engine)
