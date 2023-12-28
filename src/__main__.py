@@ -4,7 +4,7 @@ from datetime import datetime
 from robyn import Robyn, jsonify
 from sqlalchemy import Date
 
-import crud
+from . import crud
 
 from .models import Crime, SessionLocal
 
